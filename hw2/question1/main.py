@@ -1,3 +1,4 @@
+from models import Vertex, Graph
 import sys
 
 if __name__ == "__main__":
@@ -28,3 +29,20 @@ def bfs(graph, sourceV):
                 v.p = current
                 v.d = current.d + 1
                 queue.add(v)
+
+
+def dfs(graph):
+    for v in range graph.vertices:
+        for v2 in graph.vertices:
+            v2.c = -1
+            v2.p = None
+        dfsvisit(graph, v)
+
+
+def dfsvisit(graph, source):
+    source.c = 0
+    for v in source.adj:
+        if v.c == -1:
+            v.p = source
+            dfsvisit(graph, v)
+    source.c = 1
